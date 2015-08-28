@@ -5,21 +5,21 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
   <body data-ng-controller="StoreController as store">
-    <section data-ng-init="tab = 1">
+    <section data-ng-controller="PanelController as panel">
       <ul class="nav nav-pills">
-        <li data-ng-class="{active:tab === 1}"><a href="" data-ng-click="tab = 1">Description</a></li>
-        <li data-ng-class="{active:tab === 2}"><a href="" data-ng-click="tab = 2">Specifications</a></li>
-        <li data-ng-class="{active:tab === 3}"><a href="" data-ng-click="tab = 3">Reviews</a></li>
+        <li data-ng-class="{'active':panel.isSelected(1)}"><a href="" data-ng-click="panel.selectTab(1)">Description</a></li>
+        <li data-ng-class="{'active':panel.isSelected(2)}"><a href="" data-ng-click="panel.selectTab(2)">Specifications</a></li>
+        <li data-ng-class="{'active':panel.isSelected(3)}"><a href="" data-ng-click="panel.selectTab(3)">Reviews</a></li>
       </ul>
 
-      <div class="panel" data-ng-show="tab === 1">
+      <div class="panel" data-ng-show="panel.isSelected(1)">
         <h4>Description</h4>
         <p>{{product.description}}</p>
       </div>
-      <div class="panel" data-ng-show="tab === 2">
+      <div class="panel" data-ng-show="panel.isSelected(2)">
         <h4>Specifications</h4>
       </div>
-      <div class="panel" data-ng-show="tab === 3">
+      <div class="panel" data-ng-show="panel.isSelected(3)">
         <h4>Reviews</h4>
       </div>
     </section>
