@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
   <body>
-    <h1>{{"Hello " + "World!"}}</h1>
+    <div data-ng-controller="StoreController as store">
+      <h1>{{store.product.name}}</h1>
+      <h2>{{store.product.price}}</h2>
+      <p>{{store.product.description}}</p>
+    </div>
     <script src="js/angular.min.js"></script>
     <script src="app/main.js"></script>
   </body>
