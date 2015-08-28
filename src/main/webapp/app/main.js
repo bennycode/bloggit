@@ -5,12 +5,23 @@
   var app = angular.module(applicationName, dependencies);
 
   app.controller('StoreController', function () {
-    this.product = gem;
+    this.products = gems;
   });
 
-  var gem = {
-    name: 'Dode',
-    price: 2.95,
-    description: '...'
-  };
+  var gems = [
+    {
+      name: 'Abc',
+      price: 2.95,
+      description: '...',
+      canPurchase: false,
+      soldOut: true
+    },
+    {
+      name: 'Def',
+      price: 2.95,
+      description: '...',
+      canPurchase: true,
+      soldOut: false
+    }
+  ];
 })();

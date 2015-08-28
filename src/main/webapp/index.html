@@ -4,11 +4,13 @@
     <title>Start Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
-  <body>
-    <div data-ng-controller="StoreController as store">
-      <h1>{{store.product.name}}</h1>
-      <h2>{{store.product.price}}</h2>
-      <p>{{store.product.description}}</p>
+  <body data-ng-controller="StoreController as store">
+    <div 
+      data-ng-repeat="product in store.products">
+      <h1>{{product.name}}</h1>
+      <h2>{{product.price}}</h2>
+      <p>{{product.description}}</p>
+      <button data-ng-show="product.canPurchase">Add to cart</button>
     </div>
     <script src="js/angular.min.js"></script>
     <script src="app/main.js"></script>
