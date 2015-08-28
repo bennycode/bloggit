@@ -5,10 +5,29 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
   <body data-ng-controller="StoreController as store">
+    <section data-ng-init="tab = 1">
+      <ul class="nav nav-pills">
+        <li data-ng-class="{active:tab === 1}"><a href="" data-ng-click="tab = 1">Description</a></li>
+        <li data-ng-class="{active:tab === 2}"><a href="" data-ng-click="tab = 2">Specifications</a></li>
+        <li data-ng-class="{active:tab === 3}"><a href="" data-ng-click="tab = 3">Reviews</a></li>
+      </ul>
+
+      <div class="panel" data-ng-show="tab === 1">
+        <h4>Description</h4>
+        <p>{{product.description}}</p>
+      </div>
+      <div class="panel" data-ng-show="tab === 2">
+        <h4>Specifications</h4>
+      </div>
+      <div class="panel" data-ng-show="tab === 3">
+        <h4>Reviews</h4>
+      </div>
+    </section>
+
     <div 
       data-ng-repeat="product in store.products">
       <h1>{{product.name}}</h1>
-      <h2>{{product.price}}</h2>
+      <h2>{{product.price| currency}}</h2>
       <p>{{product.description}}</p>
       <button data-ng-show="product.canPurchase">Add to cart</button>
     </div>

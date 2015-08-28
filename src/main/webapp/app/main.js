@@ -11,7 +11,7 @@
   var gems = [
     {
       name: 'Abc',
-      price: 2.95,
+      price: 2,
       description: '...',
       canPurchase: false,
       soldOut: true
