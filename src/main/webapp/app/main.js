@@ -13,7 +13,7 @@
 
     this.isSelected = function (checkTab) {
       return this.tab === checkTab;
-    }; 
+    };
   });
 
   app.controller('StoreController', function () {
@@ -22,18 +22,31 @@
 
   var gems = [
     {
-      name: 'Abc',
+      name: 'Keyboard',
       price: 2,
       description: '...',
-      canPurchase: false,
-      soldOut: true
+      canPurchase: true,
+      soldOut: false,
+      reviews: []
     },
     {
-      name: 'Def',
+      name: 'Mouse',
       price: 2.95,
       description: '...',
       canPurchase: true,
-      soldOut: false
+      soldOut: false,
+      reviews: [
+        {
+          stars: 5,
+          body: "I love that thing.",
+          author: "joe@thomas.com"
+        },
+        {
+          stars: 4,
+          body: "It's great!",
+          author: "bn@welovecoding.com"
+        }
+      ]
     }
   ];
 })();

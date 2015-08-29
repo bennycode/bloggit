@@ -21,6 +21,34 @@
       </div>
       <div class="panel" data-ng-show="panel.isSelected(3)">
         <h4>Reviews</h4>
+
+        <form name="reviewForm">
+          <blockquote data-ng-repeat="review in product.reviews">
+            <b>Stars: {{review.stars}}</b>
+            {{review.body}}
+            <cite>by: {{review.author}}</cite>
+          </blockquote>
+
+          <fieldset class="form-group">
+            <select 
+              class="form-control"
+              data-ng-options="stars for stars in [5,4,3,2,1]"
+              data-ng-model="review.stars">
+            </select>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <textarea data-ng-model="review.body"></textarea>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <label>by: </label><input data-ng-model="review.author" type="email" />
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input type="submit" value="Submit" />
+          </fieldset>
+        </form>
       </div>
     </section>
 
