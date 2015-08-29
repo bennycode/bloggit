@@ -3,6 +3,7 @@
   <head>
     <title>Start Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="app/style/style.css"/>
   </head>
   <body data-ng-controller="StoreController as store">    
     <div 
@@ -37,38 +38,51 @@
 
           <form 
             data-ng-controller="ReviewController as reviewCtrl"
-            data-ng-submit="reviewCtrl.addReview(product)"
+            data-ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)"
             name="reviewForm"
+            novalidate="novalidate"
             >
 
             <fieldset class="form-group">
               <label for="selectStars">Stars</label>
               <select 
-                id="selectStars"
                 class="form-control"
+                data-ng-model="reviewCtrl.review.stars"
                 data-ng-options="stars for stars in [5,4,3,2,1]"
-                data-ng-model="reviewCtrl.review.stars">
+                id="selectStars"
+                required="required"
+                >
               </select>
             </fieldset>
 
             <fieldset class="form-group">
               <label for="writeComment">Comment</label><br/>
               <textarea 
+                data-ng-model="reviewCtrl.review.body"
                 id="writeComment"
-                data-ng-model="reviewCtrl.review.body"></textarea>
+                required="required"
+                ></textarea>
             </fieldset>
 
             <fieldset class="form-group">
               <label for="tellEmail">Email</label><br/>
               <input 
-                id="tellEmail"
                 data-ng-model="reviewCtrl.review.author" 
+                id="tellEmail"
+                required="required"
                 type="email" 
                 />
             </fieldset>
 
             <fieldset class="form-group">
-              <input type="submit" value="Submit" />
+              <p>reviewForm is valid: {{reviewForm.$valid}}</p>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input 
+                type="submit" 
+                value="Submit" 
+                />
             </fieldset>
           </form>
         </div>
