@@ -4,60 +4,75 @@
     <title>Start Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
   </head>
-  <body data-ng-controller="StoreController as store">
-    <section data-ng-controller="PanelController as panel">
-      <ul class="nav nav-pills">
-        <li data-ng-class="{'active':panel.isSelected(1)}"><a href="" data-ng-click="panel.selectTab(1)">Description</a></li>
-        <li data-ng-class="{'active':panel.isSelected(2)}"><a href="" data-ng-click="panel.selectTab(2)">Specifications</a></li>
-        <li data-ng-class="{'active':panel.isSelected(3)}"><a href="" data-ng-click="panel.selectTab(3)">Reviews</a></li>
-      </ul>
-
-      <div class="panel" data-ng-show="panel.isSelected(1)">
-        <h4>Description</h4>
-        <p>{{product.description}}</p>
-      </div>
-      <div class="panel" data-ng-show="panel.isSelected(2)">
-        <h4>Specifications</h4>
-      </div>
-      <div class="panel" data-ng-show="panel.isSelected(3)">
-        <h4>Reviews</h4>
-
-        <form name="reviewForm">
-          <blockquote data-ng-repeat="review in product.reviews">
-            <b>Stars: {{review.stars}}</b>
-            {{review.body}}
-            <cite>by: {{review.author}}</cite>
-          </blockquote>
-
-          <fieldset class="form-group">
-            <select 
-              class="form-control"
-              data-ng-options="stars for stars in [5,4,3,2,1]"
-              data-ng-model="review.stars">
-            </select>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <textarea data-ng-model="review.body"></textarea>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <label>by: </label><input data-ng-model="review.author" type="email" />
-          </fieldset>
-
-          <fieldset class="form-group">
-            <input type="submit" value="Submit" />
-          </fieldset>
-        </form>
-      </div>
-    </section>
-
+  <body data-ng-controller="StoreController as store">    
     <div 
       data-ng-repeat="product in store.products">
       <h1>{{product.name}}</h1>
       <h2>{{product.price| currency}}</h2>
       <p>{{product.description}}</p>
       <button data-ng-show="product.canPurchase">Add to cart</button>
+
+      <section data-ng-controller="PanelController as panel">
+        <ul class="nav nav-pills">
+          <li data-ng-class="{'active':panel.isSelected(1)}"><a href="" data-ng-click="panel.selectTab(1)">Description</a></li>
+          <li data-ng-class="{'active':panel.isSelected(2)}"><a href="" data-ng-click="panel.selectTab(2)">Specifications</a></li>
+          <li data-ng-class="{'active':panel.isSelected(3)}"><a href="" data-ng-click="panel.selectTab(3)">Reviews</a></li>
+        </ul>
+
+        <div class="panel" data-ng-show="panel.isSelected(1)">
+          <h4>Description</h4>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="panel" data-ng-show="panel.isSelected(2)">
+          <h4>Specifications</h4>
+        </div>
+        <div class="panel" data-ng-show="panel.isSelected(3)">
+          <h4>Reviews</h4>
+
+          <blockquote data-ng-repeat="review in product.reviews">
+            <b>Stars: {{review.stars}}</b>
+            {{review.body}}
+            <cite>by: {{review.author}}</cite>
+          </blockquote>
+
+          <form 
+            data-ng-controller="ReviewController as reviewCtrl"
+            data-ng-submit="reviewCtrl.addReview(product)"
+            name="reviewForm"
+            >
+
+            <fieldset class="form-group">
+              <label for="selectStars">Stars</label>
+              <select 
+                id="selectStars"
+                class="form-control"
+                data-ng-options="stars for stars in [5,4,3,2,1]"
+                data-ng-model="reviewCtrl.review.stars">
+              </select>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="writeComment">Comment</label><br/>
+              <textarea 
+                id="writeComment"
+                data-ng-model="reviewCtrl.review.body"></textarea>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <label for="tellEmail">Email</label><br/>
+              <input 
+                id="tellEmail"
+                data-ng-model="reviewCtrl.review.author" 
+                type="email" 
+                />
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input type="submit" value="Submit" />
+            </fieldset>
+          </form>
+        </div>
+      </section>      
     </div>
     <script src="js/angular.min.js"></script>
     <script src="app/main.js"></script>
