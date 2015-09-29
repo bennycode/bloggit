@@ -1,6 +1,6 @@
 (function () {
   var applicationName = 'store';
-  var dependencies = [];
+  var dependencies = ['store-products'];
 
   var app = angular.module(applicationName, dependencies);
 
@@ -27,13 +27,6 @@
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
       this.review = {};
-    };
-  });
-
-  app.directive('productTitle', function () {
-    return {
-      restrict: 'E',
-      templateUrl: 'product-title.html'
     };
   });
 
