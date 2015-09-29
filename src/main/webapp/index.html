@@ -8,7 +8,7 @@
   <body data-ng-controller="StoreController as store">    
     <div 
       data-ng-repeat="product in store.products">
-      <h1>{{product.name}}</h1>
+      <product-title></product-title>
       <h2>{{product.price| currency}}</h2>
       <p>{{product.description}}</p>
       <button data-ng-show="product.canPurchase">Add to cart</button>
