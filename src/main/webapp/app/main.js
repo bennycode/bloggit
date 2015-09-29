@@ -16,9 +16,18 @@
     };
   });
 
-  app.controller('StoreController', function () {
-    this.products = gems;
-  });
+  app.controller('StoreController',
+    [
+      '$http', function ($http) {
+        var store = this;
+        store.products = [];
+
+        $http.get('products.json').success(function (data) {
+          store.products = data;
+        });
+      }
+    ]
+    );
 
   app.controller('ReviewController', function () {
     this.review = {};
@@ -29,36 +38,4 @@
       this.review = {};
     };
   });
-
-  var gems = [
-    {
-      name: 'Keyboard',
-      price: 2,
-      description: '...',
-      canPurchase: true,
-      soldOut: false,
-      reviews: []
-    },
-    {
-      name: 'Mouse',
-      price: 2.95,
-      description: '...',
-      canPurchase: true,
-      soldOut: false,
-      reviews: [
-        {
-          stars: 5,
-          body: "I love that thing.",
-          author: "joe@thomas.com",
-          createdOn: Date.now()
-        },
-        {
-          stars: 4,
-          body: "It's great!",
-          author: "bn@welovecoding.com",
-          createdOn: Date.now()
-        }
-      ]
-    }
-  ];
 })();

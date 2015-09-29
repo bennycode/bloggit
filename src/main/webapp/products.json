@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Keyboard",
+    "price": 2999,
+    "description": "...",
+    "canPurchase": true,
+    "soldOut": false,
+    "reviews": []
+  }
+]
